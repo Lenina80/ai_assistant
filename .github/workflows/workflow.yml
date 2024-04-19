@@ -1,0 +1,26 @@
+name: Flutter CI
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: dart-packages/setup-dart@v3
+        with:
+          flutter-version: latest
+
+      - name: Get Flutter pub cache
+        run: flutter pub get
+
+      - name: Analyze code
+        run: flutter analyze
+
+      - name: Test code
+        run: flutter test
