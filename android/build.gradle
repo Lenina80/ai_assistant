@@ -4,6 +4,16 @@ allprojects {
         mavenCentral()
     }
 }
+buildscript {
+    repositories {
+        // другие репозитории
+        google() // Добавьте это, если еще не добавлено
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.2' // или ваша версия
+        classpath 'com.google.gms:google-services:4.3.10' // Добавьте это
+    }
+}
 
 rootProject.buildDir = '../build'
 subprojects {
