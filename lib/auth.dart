@@ -3,6 +3,20 @@ import 'package:firebase_auth_web/firebase_auth_web.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
+// Email Sign Up
+Future<UserCredential?> signUpWithEmailAndPassword(String email, String password) async {
+  try {
+    final credential = await _auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return credential;
+  } catch (error) {
+    print(error.toString());
+    return null;
+  }
+}
+
 // Email/Password Sign In
 Future<UserCredential?> signInWithEmailAndPassword(String email, String password) async {
   try {

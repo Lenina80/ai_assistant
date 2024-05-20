@@ -1,3 +1,4 @@
+import 'package:ai_assistant/auth.dart';
 import 'package:flutter/material.dart';
 import 'chat_page.dart'; // Импортируйте файл с экраном чата
 
@@ -9,21 +10,6 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   String? _email, _password;
-
-  void _trySubmit() {
-    final isValid = _formKey.currentState!.validate();
-    FocusScope.of(context).unfocus();
-
-    if (isValid) {
-      _formKey.currentState!.save();
-      print('Email: $_email, Password: $_password');
-
-      // Переход на экран чата после успешной регистрации
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => ChatPage()),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +56,67 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 12),
                     ElevatedButton(
-                      onPressed: _trySubmit,
-                      child: Text('Зарегистрироваться'),
+                      onPressed: () async {
+                        FocusScope.of(context).unfocus();
+                        _formKey.currentState!.save();
+                        final credential = await signUpWithEmailAndPassword("$_email", "$_password");
+                        if (credential != null) {
+                          // User signed up successfully
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) => ChatPage()),
+                          );
+                        } else {
+                          // Handle sign up error
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('Error auth with email'),
+                          )
+                          );
+                        }
+                      },
+                      child: Text('Sing Up'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        FocusScope.of(context).unfocus();
+                        _formKey.currentState!.save();
+                        final credential = await signInWithEmailAndPassword("$_email", "$_password");
+                        if (credential != null) {
+                          // User signed in successfully
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) => ChatPage()),
+                          );
+                        } else {
+                          // Handle sign in error
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('Error login with email'),
+                          )
+                          );
+                        }
+                      },
+                      child: Text('Sign In'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final credential = await signInWithGoogle();
+                        if (credential != null) {
+                          print('Success login with Goggle');// User signed in with Google
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('Success login with Goggle'),
+                          )
+                          );
+                          // Переход на экран чата после успешной регистрации
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) => ChatPage()),
+                          );
+                        } else {
+                          print('Error login with Goggle');// Handle sign in error or inform user Google sign-in not supported
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('Error login with Goggle'),
+                          )
+                          );
+                        }
+                      },
+                      child: Text("Sign In with Google"),
                     ),
                   ],
                 ),
