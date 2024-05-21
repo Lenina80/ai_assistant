@@ -12,7 +12,12 @@
           "package_name": "com.example.ai_assistant"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "893186781091-r213bfsqfs52dqnqb5vedcfhutpuplnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBKo1bBYdc3cgxy1c4mf3WwFLrKNY6PTDM"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893186781091-r213bfsqfs52dqnqb5vedcfhutpuplnt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "893186781091-i6e7u2fipo18bauah00mm5dm7eulhkso.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.aiAssistant"
+              }
+            }
+          ]
         }
       }
     }

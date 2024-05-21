@@ -4,7 +4,7 @@ import 'firebase_options.dart';
 import 'register_screen.dart'; // Импортируйте файл с экраном регистрации
 
 void main() async {
-  //WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

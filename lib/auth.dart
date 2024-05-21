@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth_web/firebase_auth_web.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 

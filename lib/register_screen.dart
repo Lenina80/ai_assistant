@@ -1,6 +1,7 @@
-import 'package:ai_assistant/auth.dart';
 import 'package:flutter/material.dart';
-import 'chat_page.dart'; // Импортируйте файл с экраном чата
+
+import 'auth.dart';
+import 'chat_page.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("RegisterScreen is being built");
     return Scaffold(
       appBar: AppBar(
         title: Text('Регистрация'),
